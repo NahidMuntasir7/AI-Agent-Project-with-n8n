@@ -98,27 +98,6 @@ Runs on: **http://localhost:5173**
 
 ---
 
-## 📂 Project Structure
-
-```
-ai-article-processor/
-├── backend/
-│   ├── main.py              # FastAPI server
-│   ├── requirements.txt     # Python dependencies
-│   └── .env                 # Config (webhook URL)
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   └── ArticleProcessor.tsx
-│   │   ├── App.tsx
-│   │   └── main.tsx
-│   ├── package.json
-│   └── tailwind.config.js
-└── README.md
-```
-
----
-
 ## 📸 Screenshots
 
 **Frontend:**
