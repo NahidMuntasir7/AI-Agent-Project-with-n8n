@@ -54,7 +54,7 @@ N8N_WEBHOOK_URL=your-n8n-webhook-url-here
 ### Create Workflow in n8n:
 
 1. **Webhook Node** - Receives data from backend
-2. **AI Agent Node** - Google Gemini 2.0 Flash with 3 tools:
+2. **AI Agent Node** - Google Gemini 2.5 Flash with 3 tools:
    - **Web Scraping Tool** - Firecrawl
    - **Google Sheets Tool** - Saves data to spreadsheet
    - **Gmail Tool** - Sends email to user
