@@ -109,5 +109,3 @@ Runs on: **http://localhost:5173**
 ![Email](https://via.placeholder.com/600x400/4CAF50/ffffff?text=AI+Analysis+Email)
 
 ---
-
-ticle-processor)
