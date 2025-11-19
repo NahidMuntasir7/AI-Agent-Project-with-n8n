@@ -75,6 +75,7 @@ Create spreadsheet with headers:
 cd backend
 venv\Scripts\activate
 python main.py
+For Swagger: uvicorn main:app --reload
 ```
 Runs on: **http://localhost:8000**
 
