@@ -1,6 +1,6 @@
 # 🤖 AI Article Processor
 
-An AI-powered system that takes users Gmail and webpage link and analyzes web articles, then emails summaries using Google Gemini 2.5 Flash, n8n, and automation tools.
+An AI-powered system that takes users Gmail and Webpage link and analyzes web articles, then emails summaries using Google Gemini 2.5 Flash, n8n, and automation tools.
 
 ---
 
