@@ -6,7 +6,7 @@ An AI-powered system that takes users Gmail and Webpage link and analyzes web ar
 
 ## 🎯 What It Does
 
-1. **Enter** article URL + your email
+1. **Enter** article URL + your email in the frontend
 2. **AI analyzes** the article (summary + insights)
 3. **Saves** Summary and Insights to Google Sheets
 4. **Emails** results to you
