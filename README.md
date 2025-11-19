@@ -28,7 +28,7 @@ An AI-powered system that takes users Gmail and Webpage link and analyzes web ar
 ### 1. Clone Repository
 
 ```bash
-[git clone https://github.com/NahidMuntasir7/ai-article-processor.git](https://github.com/NahidMuntasir7/AI-Agent-Project-with-n8n.git)
+git clone https://github.com/NahidMuntasir7/AI-Agent-Project-with-n8n.git
 cd ai-article-processor
 ```
 
