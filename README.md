@@ -101,11 +101,11 @@ Runs on: **http://localhost:5173**
 ## 📸 Screenshots
 
 **Frontend:**
+<img width="969" height="830" alt="Screenshot 2025-11-19 191940" src="https://github.com/user-attachments/assets/f7a0fd32-d07d-4a99-b016-8e504524f435" />
 
-![Frontend](https://via.placeholder.com/600x400/667eea/ffffff?text=Article+Processor+UI)
 
-**Email Result:**
+**n8n Agent:**
 
-![Email](https://via.placeholder.com/600x400/4CAF50/ffffff?text=AI+Analysis+Email)
+<img width="808" height="585" alt="Screenshot 2025-11-19 185822" src="https://github.com/user-attachments/assets/608eed61-c2ee-46cd-80fe-4c6588635c65" />
 
 ---
