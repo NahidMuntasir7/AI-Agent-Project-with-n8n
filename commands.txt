@@ -3,20 +3,19 @@
 mkdir frontend
 cd frontend
 
-now, Create package.json Manually
+Now, create package.json manually
 Create this file: C:\Users\User\Desktop\n8n\frontend\package.json
 
 npm install
 
-Create Configuration Files
+# Create Configuration Files
 vite.config.ts
 tsconfig.json
 tsconfig.node.json
 tailwind.config.js
 postcss.config.js
 
-
-now, Create Source Files
+Now, Create Source Files
 
 mkdir src
 mkdir src\components
@@ -24,9 +23,7 @@ mkdir public
 
 and make other files not mantioned before and paste the codes. 
 
-
 # Now Backend:
-
 cd C:\Users\User\Desktop\n8n\backend
 python -m venv venv
 venv\Scripts\activate
