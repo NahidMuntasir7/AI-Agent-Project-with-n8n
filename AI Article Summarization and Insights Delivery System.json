@@ -1,0 +1,301 @@
+{
+  "name": "AI Article Summarization and Insights Delivery System",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "article-processor",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -16,
+        0
+      ],
+      "id": "b7555101-6bc7-4d59-a380-5ad535836404",
+      "name": "Webhook",
+      "webhookId": "daa979d4-a306-4a77-b70f-d15d868bede7"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are an intelligent Article Analysis Agent with the ability to use tools to help users analyze web articles.\n\nCURRENT SESSION INFORMATION:\n- User Email: {{ $json.body.email }}\n- Article URL to Analyze: {{ $json.body.article_url }}\n- Session ID: {{ $json.body.session_id }}\n- Timestamp: {{ $json.body.timestamp }}\n- Source: {{ $json.body.source }}\n\nYOUR MISSION:\nYou must complete the following workflow using the tools available to you:\n\nSTEP 1 - FETCH THE ARTICLE:\nUse the Web Scrapping Tool to fetch and extract the full content from the article URL provided above. This will give you the article text to analyze.\n\nSTEP 2 - ANALYZE THE ARTICLE:\nOnce you have the article content, carefully read and analyze it. Then:\n- Create a clear, concise summary in exactly 3-5 sentences\n- Extract exactly 3-5 key insights or takeaways from the article\n- Format insights as a numbered list\n\nSTEP 3 - SAVE TO Google Sheets:\nUse the Google Sheets Tool to permanently store the analysis results with these exact parameters. Append a new row for each request:\n- Session ID: {{ $json.body.session_id }}\n- Article URL: {{ $json.body.article_url }}\n- Summary: [your generated 3-5 sentence summary]\n- Insights: [your generated 3-5 key insights as numbered list]\n- Email: {{ $json.body.email }}\n- Timestamp: {{ $json.body.timestamp }}\n\nSTEP 4 - COMPOSE AND SEND EMAIL:\nUse the Send Email Tool to send the analysis results to the user's gmail. The email should include:\n- A friendly greeting addressing the user\n- The article URL that was analyzed\n- The complete summary (3-5 sentences)\n- The complete key insights (3-5 numbered points)\n- Session details (Session ID and timestamp)\n- A professional closing signature\n\nEMAIL FORMATTING GUIDELINES:\n- Use clear headings (📰 Article, 📝 Summary, 💡 Key Insights, 🔍 Session Details)\n- Use emojis to make it visually appealing\n- Keep the tone professional yet friendly\n- Ensure proper spacing and readability\n- Include all session metadata at the end\n\nEXECUTION RULES:\n1. Always use the Web Scraper Tool FIRST to get the article content\n2. Analyze the content thoroughly before proceeding\n3. Always save to Google Sheets BEFORE sending the email\n4. The email must contain the actual summary and insights you generated\n5. Complete all steps in the exact order specified\n6. If any tool fails, explain what went wrong\n\nIMPORTANT CONSTRAINTS:\n- Summary MUST be 3-5 sentences (no more, no less)\n- Insights MUST be 3-5 points (formatted as numbered list)\n- All tools must be used in sequence\n- Email must be sent to: {{ $json.body.email }}\n- Do not skip any steps\n\nNow, begin the workflow by fetching the article from: {{ $json.body.article_url }}\n\nNow, Proceed with STEP 1.\nAnd when the goolge sheet id filled up and the mail is sent to the user then terminate the workflow.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "6bc56e9d-e3f0-42a7-9665-55dc2f2a443a",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        16,
+        304
+      ],
+      "id": "a066c700-c11c-48a2-bf08-b0e9bdf917c6",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "7DUr5daud90TvoVk",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "emailType": "text",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        608,
+        304
+      ],
+      "id": "cb3b1c90-19a1-4c5e-86dd-7afaf84425ea",
+      "name": "Send Mail Tool",
+      "webhookId": "94e48fed-38fe-4fc5-8c32-3f0069f510eb",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "LFjfYNivDOfjJKDA",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "Fetches and extracts the main content from any web article URL. Returns the article text in clean markdown format. Use this tool to read articles from the internet. Required input: url (string - the full URL of the article to scrape).",
+        "method": "POST",
+        "url": "https://api.firecrawl.dev/v0/scrape",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('JSON', ``, 'json') }}",
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.3,
+      "position": [
+        240,
+        304
+      ],
+      "id": "d32826f6-4f55-4298-84c9-94ca7980e0c0",
+      "name": "Web Scraping Tool",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "aQotd7u03y9A0ElB",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "16MHi4YZQsQ4LMvb4tA8MVOaEWw0O5Uc4_ZVg8CbiJ2A",
+          "mode": "list",
+          "cachedResultName": "AI Article Processor",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/16MHi4YZQsQ4LMvb4tA8MVOaEWw0O5Uc4_ZVg8CbiJ2A/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/16MHi4YZQsQ4LMvb4tA8MVOaEWw0O5Uc4_ZVg8CbiJ2A/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Session ID": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Session_ID', ``, 'string') }}",
+            "Article URL": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Article_URL', ``, 'string') }}",
+            "Summary": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Summary', ``, 'string') }}",
+            "Insights": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Insights', ``, 'string') }}",
+            "Email": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Email', ``, 'string') }}",
+            "Timestamp": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Timestamp', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Session ID",
+              "displayName": "Session ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Article URL",
+              "displayName": "Article URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Summary",
+              "displayName": "Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Insights",
+              "displayName": "Insights",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        448,
+        304
+      ],
+      "id": "01e6ce97-badb-4480-bcc2-d5faadc398ef",
+      "name": "Google Sheets Tool",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "2vIoj6TvNke4S9f0",
+          "name": "Google Sheets account 3"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Mail Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Web Scraping Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "d4012a4b-30c4-4eb9-861d-d6ac14fbf79c",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "32fda509df5c76e39740c83df563f73bedaf19ac2c22e324b0042ed53bcb853f"
+  },
+  "id": "wiceOcR42AV1Nr7Y",
+  "tags": []
+}
