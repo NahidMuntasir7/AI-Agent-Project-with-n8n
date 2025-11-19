@@ -1,6 +1,6 @@
 # 🤖 AI Article Processor
 
-An AI-powered system that analyzes web articles and emails summaries using Google Gemini 2.0 Flash, n8n, and automation tools.
+An AI-powered system that takes users Gmail and webpage link and analyzes web articles, then emails summaries using Google Gemini 2.5 Flash, n8n, and automation tools.
 
 ---
 
@@ -8,7 +8,7 @@ An AI-powered system that analyzes web articles and emails summaries using Googl
 
 1. **Enter** article URL + your email
 2. **AI analyzes** the article (summary + insights)
-3. **Saves** to Google Sheets
+3. **Saves** Summary and Insights to Google Sheets
 4. **Emails** results to you
 
 ---
@@ -17,18 +17,9 @@ An AI-powered system that analyzes web articles and emails summaries using Googl
 
 - **Frontend:** React + TypeScript + Tailwind CSS
 - **Backend:** Python + FastAPI
-- **AI:** Google Gemini 2.0 Flash
+- **AI:** Google Gemini 2.5 Flash
 - **Automation:** n8n workflow
-- **Tools:** Jina AI (scraping), Google Sheets, Gmail
-
----
-
-## 📋 Prerequisites
-
-- Node.js 20.19+
-- Python 3.8+
-- n8n account ([n8n.io](https://n8n.io))
-- Google Gemini API key ([Get here](https://aistudio.google.com/app/apikey))
+- **Tools:** Firecrawl (scraping), Google Sheets, Gmail
 
 ---
 
@@ -56,13 +47,6 @@ Create `backend/.env`:
 N8N_WEBHOOK_URL=your-n8n-webhook-url-here
 ```
 
-### 3. Setup Frontend
-
-```bash
-cd frontend
-npm install
-```
-
 ---
 
 ## ⚙️ n8n Workflow Setup
@@ -71,7 +55,7 @@ npm install
 
 1. **Webhook Node** - Receives data from backend
 2. **AI Agent Node** - Google Gemini 2.0 Flash with 3 tools:
-   - **Web Scraping Tool** - Jina AI (GET `https://r.jina.ai/={{ $parameter.url }}`)
+   - **Web Scraping Tool** - Firecrawl
    - **Google Sheets Tool** - Saves data to spreadsheet
    - **Gmail Tool** - Sends email to user
 
@@ -134,17 +118,6 @@ ai-article-processor/
 
 ---
 
-## 🐛 Troubleshooting
-
-| Issue | Solution |
-|-------|----------|
-| Frontend won't start | Delete `node_modules`, run `npm install` again |
-| Backend error | Check `.env` has correct webhook URL |
-| n8n workflow fails | Activate workflow, check all tools configured |
-| No email received | Check spam folder, reconnect Gmail OAuth |
-
----
-
 ## 📸 Screenshots
 
 **Frontend:**
@@ -157,35 +130,4 @@ ai-article-processor/
 
 ---
 
-## 🎓 Project Info
-
-- **Author:** NahidMuntasir7
-- **Date:** 2025-11-19
-- **Purpose:** Module 16 AI Agent Assignment
-- **License:** MIT
-
----
-
-## ⭐ Features
-
-✅ AI-powered article analysis  
-✅ Automatic web scraping  
-✅ Google Sheets database  
-✅ Email delivery  
-✅ Session tracking  
-✅ Modern UI  
-
----
-
-## 🙏 Credits
-
-- Google Gemini 2.0 Flash
-- n8n Workflow Automation
-- Jina AI Reader
-- FastAPI & React
-
----
-
-Made with ❤️ by **NahidMuntasir7**
-
-[⬆ Back to Top](#-ai-article-processor)
+ticle-processor)
