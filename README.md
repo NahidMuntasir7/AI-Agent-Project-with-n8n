@@ -32,7 +32,7 @@ git clone https://github.com/NahidMuntasir7/ai-article-processor.git
 cd ai-article-processor
 ```
 
-### 2. Setup Backend
+### 2. Setup Backend (not needed Repo already have venv files)
 
 ```bash
 cd backend
