@@ -2,12 +2,10 @@
 
 An AI-powered system that takes users Gmail and a webpage link and analyzes web articles, then emails summaries using Google Gemini 2.5 Flash, n8n, and automation tools.
 
----
 
 ## Project Walkthrough Video Link
 https://drive.google.com/file/d/1OH1q-h-NSOeDhlYAz1Gw-FaSWrU4yE-T/view
 
----
 
 ## 🎯 What It Does
 
@@ -16,7 +14,6 @@ https://drive.google.com/file/d/1OH1q-h-NSOeDhlYAz1Gw-FaSWrU4yE-T/view
 3. **Saves** Summary and Insights to Google Sheets
 4. **Emails** results to you
 
----
 
 ## 🛠️ Tech Stack
 
@@ -26,7 +23,6 @@ https://drive.google.com/file/d/1OH1q-h-NSOeDhlYAz1Gw-FaSWrU4yE-T/view
 - **Automation:** n8n workflow
 - **Tools:** Firecrawl (scraping), Google Sheets, Gmail
 
----
 
 ## 🚀 Installation
 
@@ -52,7 +48,6 @@ Create `backend/.env`:
 N8N_WEBHOOK_URL=your-n8n-webhook-url-here
 ```
 
----
 
 ## ⚙️ n8n Workflow Setup
 
@@ -71,7 +66,6 @@ Create spreadsheet with headers:
 | Session ID | Article URL | Summary | Insights | Email | Timestamp |
 |------------|-------------|---------|----------|-------|-----------|
 
----
 
 ## ▶️ Run the App
 
@@ -91,7 +85,6 @@ npm run dev
 ```
 Runs on: **http://localhost:5173**
 
----
 
 ## 💻 Usage
 
@@ -101,7 +94,6 @@ Runs on: **http://localhost:5173**
 4. Click **"Process Article"**
 5. Check your email for results! ✅
 
----
 
 ## 📸 Screenshots
 
@@ -113,4 +105,3 @@ Runs on: **http://localhost:5173**
 
 <img width="808" height="585" alt="Screenshot 2025-11-19 185822" src="https://github.com/user-attachments/assets/608eed61-c2ee-46cd-80fe-4c6588635c65" />
 
----
