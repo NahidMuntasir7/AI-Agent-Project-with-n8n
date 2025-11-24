@@ -4,6 +4,11 @@ An AI-powered system that takes users Gmail and a webpage link and analyzes web 
 
 ---
 
+# Project Walkthrough Video Link
+
+---
+
+
 ## 🎯 What It Does
 
 1. **Enter** article URL + your email in the frontend
