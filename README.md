@@ -9,7 +9,6 @@ https://drive.google.com/file/d/1OH1q-h-NSOeDhlYAz1Gw-FaSWrU4yE-T/view
 
 ---
 
-
 ## 🎯 What It Does
 
 1. **Enter** article URL + your email in the frontend
