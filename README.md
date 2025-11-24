@@ -4,7 +4,7 @@ An AI-powered system that takes users Gmail and a webpage link and analyzes web 
 
 ---
 
-# Project Walkthrough Video Link
+## Project Walkthrough Video Link
 https://drive.google.com/file/d/1OH1q-h-NSOeDhlYAz1Gw-FaSWrU4yE-T/view
 
 ---
